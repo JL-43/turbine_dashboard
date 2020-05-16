@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>Node-RED UI Builder</title>
+    <meta name="description" content="Node-RED UI Builder - VueJS + bootstrap-vue version">
+
+    <link rel="icon" href="./images/node-blue.ico">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#3f51b5">
+
+    <!-- Used if adding to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Node-RED UI Builder">
+
+    <!-- Used if adding to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Node-RED UI Builder">
+
+    <!-- Homescreen icons for Apple mobile use if required
+        <link rel="apple-touch-icon" href="./images/manifest/icon-48x48.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="./images/manifest/icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="96x96" href="./images/manifest/icon-96x96.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="./images/manifest/icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="192x192" href="./images/manifest/icon-192x192.png">
+    -->
+
+    <link type="text/css" rel="stylesheet" href="../uibuilder/vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="../uibuilder/vendor/bootstrap-vue/dist/bootstrap-vue.css" />
+    
+    <link type="text/css" rel="stylesheet" href="./index.css" media="all">
+</head>
+<body background="./sample.png">
+    <div id="app" v-cloak>
+        <img src="sample.jpg" id="dashboard">
+        <div class="valuesdiv" style="position: absolute; left: 30px; top: 250px;">
+            <p class="topic">AXIAL 1</p>
+            <p class="payload">Direct - {{ Axial1Direct.payload }} mm</p>
+        </div>
+        <!-- labels -->
+        <p class="labels" style="left: 530px;">TURBINE</p>
+        <p class="labels" style="left: 1060px;">GENERATOR</p>
+        <p class="labels" style="left: 1425px;">EXCITER</p>
+
+
+        <!-- values start -->
+        <!-- others -->
+        <div class="valuesdiv" style="position: absolute; left: 30px; top: 335px;">
+            <p class="topic">AXIAL 2</p>
+            <p class="payload">Direct - {{ Axial2Direct.payload }} mm</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 180px; top: 450px;">
+            <p class="topic">SPEED</p>
+            <p class="payload">{{ Speed.payload }} rpm</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 220px; top: 70px;">
+            <p class="topic" style="color: rgb(230, 15, 15);">ECC</p>
+            <p class="payload" style="color: rgb(230, 15, 15);">Direct - {{ ECC.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 750px; top: 200px;">
+            <p class="topic">{{ DiffExpDirect.topic }}</p>
+            <p class="payload">{{ DiffExpDirect.payload }}</p>
+        </div>
+        
+        <!-- BRGY -->
+        <div class="valuesdiv" style="position: absolute; left: 420px; top: 35px;">
+            <p class="topic">BRG - 1Y</p>
+            <p class="payload">Direct - {{ BRG1YDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 420px; top: 110px;">
+            <p class="payload">Gap - {{ BRG1YGap.payload }} Vdc</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 670px; top: 35px;">
+            <p class="topic">BRG - 2Y</p>
+            <p class="payload">Direct - {{ BRG2YDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 670px; top: 110px;">
+            <p class="payload">Gap - {{ BRG2YGap.payload }} Vdc</p>
+        </div>
+        <<div class="valuesdiv" style="position: absolute; left: 920px; top: 35px;">
+            <p class="topic">BRG - 3Y</p>
+            <p class="payload">Direct - {{ BRG3YDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 920px; top: 110px;">
+            <p class="payload">Gap - {{ BRG3YGap.payload }} Vdc</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 1270px; top: 35px;">
+            <p class="topic">BRG - 4Y</p>
+            <p class="payload">Direct - {{ BRG4YDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 1270px; top: 110px;">
+            <p class="payload">Gap - {{ BRG4YGap.payload }} Vdc</p>
+        </div>
+        <!-- BRGX -->
+        <div class="valuesdiv" style="position: absolute; left: 420px; top: 520px;">
+            <p class="topic">BRG - 1X</p>
+            <p class="payload">Direct - {{ BRG1XDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 420px; top: 595px;">
+            <p class="payload">Gap - {{ BRG1XGap.payload }} Vdc</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 670px; top: 520px;">
+            <p class="topic">BRG - 2X</p>
+            <p class="payload">Direct - {{ BRG2XDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 670px; top: 595px;">
+            <p class="payload">Gap - {{ BRG2XGap.payload }} Vdc</p>
+        </div>
+        <<div class="valuesdiv" style="position: absolute; left: 920px; top: 520px;">
+            <p class="topic">BRG - 3X</p>
+            <p class="payload">Direct - {{ BRG3XDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 920px; top: 595px;">
+            <p class="payload">Gap - {{ BRG3XGap.payload }} Vdc</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 1270px; top: 520px;">
+            <p class="topic">BRG - 4X</p>
+            <p class="payload">Direct - {{ BRG4XDirect.payload }} um</p>
+        </div>
+        <div class="valuesdiv" style="position: absolute; left: 1270px; top: 595px;">
+            <p class="payload">Gap - {{ BRG4XGap.payload }} Vdc</p>
+        </div>
+    </div>
+
+    <!-- These MUST be in the right order. Note no leading / -->
+    <!-- REQUIRED: Socket.IO is loaded only once for all instances
+                     Without this, you don't get a websocket connection -->
+    <script src="../uibuilder/vendor/socket.io/socket.io.js"></script>
+
+    <!-- --- Vendor Libraries - Load in the right order --- -->
+    <script src="../uibuilder/vendor/vue/dist/vue.js"></script> <!-- dev version with component compiler -->
+    <!-- <script src="../uibuilder/vendor/vue/dist/vue.min.js"></script>   prod version with component compiler -->
+    <!-- <script src="../uibuilder/vendor/vue/dist/vue.runtime.min.js"></script>   prod version without component compiler -->
+    <script src="../uibuilder/vendor/bootstrap-vue/dist/bootstrap-vue.js"></script>
+
+    <!-- REQUIRED: Sets up Socket listeners and the msg object -->
+    <!-- <script src="./uibuilderfe.js"></script>   //dev version -->
+    <script src="./uibuilderfe.min.js"></script> <!--    //prod version -->
+    <!-- OPTIONAL: You probably want this. Put your custom code here -->
+    <script src="./index.js"></script>
+
+</body>
+
+<style>
+    
+
+    body{
+        background-repeat: no-repeat;
+        background-color: #0e0e0e;
+    }
+
+    .labels{
+        position: absolute; 
+        left: 550px; 
+        top: 330px; 
+        font-weight: bold; 
+        color: white; 
+        font-size: 20px;
+    }
+
+    .topic{
+        text-decoration: underline;
+        font-weight: bold;
+        text-align: center;
+        color: rgb(14, 231, 25);
+        font-size: 20px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .payload{
+        color: rgb(14, 231, 25);
+        font-size: 16px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .valuesdiv{
+        position: absolute;
+        width: 200px;
+        left: 1000px;
+    }
+
+    #dashboard{
+        position: absolute;
+        left:200px;
+        top: 0px;
+        z-index: -1;
+    }
+</style>
+
+</html>
